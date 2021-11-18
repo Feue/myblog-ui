@@ -1,0 +1,115 @@
+<template>
+  <div class="header">
+    <div class="left"></div>
+    <div class="right">
+      <el-dropdown trigger="click" @command="handleCommand">
+        <span class="el-dropdown-link">
+          <el-space wrap>
+            <!-- <span class="name">{{ userName }}</span> -->
+            <el-avatar
+              shape="square"
+              :size="40"
+              :src="img"
+              fit="cover"
+              class="avatar"
+            ></el-avatar>
+          </el-space>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="personalInfo">个人信息</el-dropdown-item>
+            <el-dropdown-item command="logout" divided
+              >退出登录</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { mapGetters } from "vuex";
+import store from "@/store/index";
+import img from '@/assets/img/portrait.jpg'
+
+export default {
+  name: "Header",
+  setup() {
+
+    const handleCommand = (command: any) => {
+      switch (command) {
+        case "personalInfo":
+          personalInfo();
+          break;
+        case "logout":
+          logout();
+          break;
+      }
+    };
+
+    const personalInfo = () => {
+      console.log("personalInfo");
+      store.commit("changeView", {
+        routerParams: {
+          name: "UserInfo",
+        },
+      });
+    };
+
+    const logout = () => {
+      console.log("logout");
+      store.commit("changeView", {
+        routerParams: {
+          name: "Login",
+        },
+      });
+      store.commit("setToken", {
+        token: "",
+      });
+    };
+    return {
+      img,
+      handleCommand,
+      personalInfo,
+      logout,
+    };
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 60px;
+  color: #fff;
+}
+.left {
+  flex: 2;
+  font-size: 24px;
+}
+.right {
+  flex: 1;
+  text-align: right;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409eff;
+}
+.name {
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 30px;
+}
+.avatar {
+  height: 50px;
+  line-height: 50px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+</style>
