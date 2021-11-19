@@ -16,7 +16,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const router = useRouter();
-    const changedRoute = computed(() => store.getters.routerParams);
+    const changedRoute = computed(() => store.getters.getRouterParams);
 
     watch(changedRoute, (newVal, _oldVal) => {
       console.log("new:" + newVal);

@@ -5,7 +5,7 @@
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
           <el-space wrap>
-            <span class="name">{{ userName }}</span>
+            <span class="name">{{ nickname }}</span>
             <el-avatar
               shape="square"
               :size="40"
@@ -37,7 +37,7 @@ export default defineComponent({
   name: "Header",
   setup() {
     const store = useStore();
-    const userName = computed(() => store.getters.getUserName);
+    const nickname = computed(() => store.getters.getNickname);
 
     const handleCommand = (command: any) => {
       switch (command) {
@@ -71,11 +71,9 @@ export default defineComponent({
       });
     };
     return {
-      userName,
+      nickname,
       img,
       handleCommand,
-      personalInfo,
-      logout,
     };
   },
 });

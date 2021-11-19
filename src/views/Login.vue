@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form :rules="rules" ref="formRef" :model="loginForm" class="login-form">
       <el-form-item>
-        <h3 class="title">系统登录</h3>
+        <h3 class="title">登录</h3>
       </el-form-item>
       <el-form-item prop="account">
         <el-input
@@ -22,12 +22,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onLogin()">登录</el-button>
+        <el-button type="primary" @click="onLogin">登录</el-button>
       </el-form-item>
       <el-form-item>
-        <el-button class="reg" type="text" @click="toRegister"
-          >立即注册</el-button
-        >
+        <el-button type="warning" @click="toRegister">立即注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -78,18 +76,16 @@ export default defineComponent({
           })
             .then((response) => {
               // console.log(response);
-              console.log(store.state.routerParams);
               store.commit("changeView", {
                 routerParams: {
                   name: "Home",
                 },
               });
-              console.log(store.state.routerParams);
               store.commit("setToken", {
-                token: response.data.token,
+                token: response.data.result.token,
               });
-              store.commit("setUserName", {
-                userName: response.data.userName,
+              store.commit("setNickname", {
+                nickname: response.data.result.nickname,
               });
             })
             .catch((error) => console.log(error));
@@ -138,19 +134,17 @@ export default defineComponent({
   background-color: #40a0ffa1;
   position: absolute;
   width: 350px;
-  margin: auto; /* 上下间距10px，左右自动居中*/
+  margin: auto;
   padding: 30px;
   border-radius: 20px; /* 圆角 */
-  top: 20%;
+  top: 50%;
   left: 50%;
-}
-.reg {
-  color: white;
+  transform: translate(-50%, -50%);
 }
 .title {
   font-size: 26px;
   color: #eee;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 20px auto;
   text-align: center;
   font-weight: 700;
 }

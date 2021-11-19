@@ -5,21 +5,21 @@ const store = createStore({
   state: {
     routerParams: {},
     token: "",
-    userName: "",
+    nickname: "",
   },
   getters: {
     getRouterParams: (state) => state.routerParams,
-    getUserName: (state) => state.userName,
+    getNickname: (state) => state.nickname,
   },
   mutations: {
     setToken(state, payload) {
       state.token = "Bearer " + payload.token;
     },
-    setUserName(state, payload) {
-      state.userName = payload.userName;
+    setNickname(state, payload) {
+      state.nickname = payload.nickname;
     },
     changeView(state, payload) {
-      console.log("changeView");
+      // console.log("changeView");
       state.routerParams = payload.routerParams;
     },
   },
