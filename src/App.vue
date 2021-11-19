@@ -1,9 +1,3 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-// import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
@@ -11,6 +5,28 @@
     <router-view></router-view>
   </div>
 </template>
+
+<script lang="ts">
+import { computed, defineComponent, watch } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+export default defineComponent({
+  name: "App",
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const changedRoute = computed(() => store.getters.routerParams);
+
+    watch(changedRoute, (newVal, _oldVal) => {
+      console.log("new:" + newVal);
+      router.push(newVal);
+    });
+
+    return {};
+  },
+});
+</script>
 
 <style>
 #app {

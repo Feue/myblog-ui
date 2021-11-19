@@ -5,7 +5,7 @@
       <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
           <el-space wrap>
-            <!-- <span class="name">{{ userName }}</span> -->
+            <span class="name">{{ userName }}</span>
             <el-avatar
               shape="square"
               :size="40"
@@ -29,13 +29,15 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
-import store from "@/store/index";
-import img from '@/assets/img/portrait.jpg'
+import { useStore } from "vuex";
+import img from "@/assets/img/portrait.jpg";
+import { computed, defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "Header",
   setup() {
+    const store = useStore();
+    const userName = computed(() => store.getters.getUserName);
 
     const handleCommand = (command: any) => {
       switch (command) {
@@ -69,13 +71,14 @@ export default {
       });
     };
     return {
+      userName,
       img,
       handleCommand,
       personalInfo,
       logout,
     };
-  }
-};
+  },
+});
 </script>
 
 <style lang="scss" scoped>

@@ -4,8 +4,20 @@ const history = createWebHashHistory();
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
+    name: "Login",
+    component: () => import("@/views/Login.vue"),
+  },
+  {
+    path: "/layout",
     name: "Layout",
     component: () => import("@/layout/index.vue"),
+    children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: () => import("@/components/HelloWorld.vue"),
+      },
+    ],
   },
 ];
 

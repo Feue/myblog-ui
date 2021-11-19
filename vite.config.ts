@@ -15,12 +15,12 @@ export default defineConfig({
     port: 3000,
     cors: true,
     proxy: {
-      "^/remote/.*": {
+      "^/api/.*": {
         target: "http://localhost:8080",
         changeOrigin: true,
         secure: false,
         ws: true,
-        rewrite: (path) => path.replace(/^\/remote/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

@@ -3,19 +3,22 @@
     <el-header class="header">
       <Header></Header>
     </el-header>
-    <el-main class="body">main</el-main>
+    <el-main class="body">
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </template>
 
 <script lang="ts">
-import Header from "@/layout/header.vue";
+import Header from "@/layout/Header.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "layout",
   components: {
     Header,
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

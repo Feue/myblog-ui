@@ -1,9 +1,5 @@
 import { createStore } from "vuex";
 import createdPersistedStore from "vuex-persistedstate";
-import actions from "./actions";
-import auth from "./modules/auth";
-import mutations from "./mutations";
-import route from "./modules/route";
 
 const store = createStore({
   state: {
@@ -11,12 +7,21 @@ const store = createStore({
     token: "",
     userName: "",
   },
-  mutations,
-  getters: {},
-  actions,
-  modules: {
-    auth,
-    route
+  getters: {
+    getRouterParams: (state) => state.routerParams,
+    getUserName: (state) => state.userName,
+  },
+  mutations: {
+    setToken(state, payload) {
+      state.token = "Bearer " + payload.token;
+    },
+    setUserName(state, payload) {
+      state.userName = payload.userName;
+    },
+    changeView(state, payload) {
+      console.log("changeView");
+      state.routerParams = payload.routerParams;
+    },
   },
   plugins: [createdPersistedStore()],
 });
