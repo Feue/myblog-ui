@@ -34,7 +34,7 @@
 <script lang="ts">
 import { useStore } from "vuex";
 import request from "@/utils/request";
-import { ref, reactive, defineComponent } from "vue";
+import { ref, reactive, defineComponent } from "@vue/runtime-core";
 
 interface DataType {
   account: string;
@@ -78,7 +78,7 @@ export default defineComponent({
               // console.log(response);
               store.commit("changeView", {
                 routerParams: {
-                  name: "Home",
+                  name: "FriendNews",
                 },
               });
               store.commit("setToken", {

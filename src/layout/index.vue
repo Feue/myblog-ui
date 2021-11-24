@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-header class="header">
-      <Header></Header>
+      <el-affix><Header></Header></el-affix>
     </el-header>
     <el-main class="body">
       <router-view></router-view>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Header from "@/layout/Header.vue";
-import { defineComponent } from "vue";
+import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
   name: "layout",
@@ -32,7 +32,10 @@ export default defineComponent({
   background-color: #545c64;
 }
 .body {
-  background-color: rgba(255, 255, 255, 0.377);
+  padding: 0;
+  margin: auto;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .el-header {
   padding: 0;
