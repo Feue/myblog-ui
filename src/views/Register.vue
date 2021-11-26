@@ -108,7 +108,7 @@ export default defineComponent({
     };
 
     const onRegister = () => {
-      formRef.value.validate((valid: any) => {
+      formRef.value.validate((valid: Boolean) => {
         if (valid) {
           request({
             url: "/v1/user/register",

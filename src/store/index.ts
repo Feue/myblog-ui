@@ -6,10 +6,12 @@ const store = createStore({
     routerParams: {},
     token: "",
     nickname: "",
+    userInfo: {}
   },
   getters: {
     getRouterParams: (state) => state.routerParams,
     getNickname: (state) => state.nickname,
+    getUserInfo: (state) => state.userInfo
   },
   mutations: {
     setToken(state, payload) {
@@ -22,6 +24,10 @@ const store = createStore({
       // console.log("changeView");
       state.routerParams = payload.routerParams;
     },
+    setUserInfo(state, payload) {
+      state.userInfo = payload.userInfo
+      state.nickname = payload.userInfo.nickname
+    }
   },
   plugins: [createdPersistedStore()],
 });

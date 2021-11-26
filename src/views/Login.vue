@@ -84,8 +84,8 @@ export default defineComponent({
               store.commit("setToken", {
                 token: response.data.result.token,
               });
-              store.commit("setNickname", {
-                nickname: response.data.result.nickname,
+              store.commit("setUserInfo", {
+                nickname: response.data.result.userInfo,
               });
             })
             .catch((error) => console.log(error));

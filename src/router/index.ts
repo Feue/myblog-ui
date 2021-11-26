@@ -27,11 +27,6 @@ const routes: Array<RouteRecordRaw> = [
         name: "FriendNews",
         component: () => import("@/views/friendnews/friendNews.vue"),
       },
-      {
-        path: "/personalinfo",
-        name: "PersonalInfo",
-        component: () => import("@/views/personalinfo/personalinfo.vue"),
-      },
     ],
   },
 ];

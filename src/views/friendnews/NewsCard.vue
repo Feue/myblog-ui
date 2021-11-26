@@ -21,7 +21,7 @@
       <el-button v-if="flag" @click="flag = !flag" circle>
         <el-icon class="is-loading"><Star /></el-icon>
       </el-button>
-      <el-button v-if="!flag" @click="flag = !flag" circle>
+      <el-button type="warning" v-if="!flag" @click="flag = !flag" circle>
         <el-icon class="is-loading"><StarFilled /></el-icon>
       </el-button>
       <el-button circle>

@@ -20,10 +20,9 @@
         </el-menu>
       </div>
       <div class="right">
-        <el-dropdown trigger="hover" @command="handleCommand">
-          <span class="el-dropdown-link">
-            <el-space wrap>
-              <span class="name">{{ nickname }}</span>
+        <el-space size="large" wrap>
+          <el-popover popper-class="pop" :width="200" trigger="click">
+            <template #reference>
               <el-avatar
                 shape="square"
                 :size="40"
@@ -31,19 +30,16 @@
                 fit="cover"
                 class="avatar"
               ></el-avatar>
-            </el-space>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="personalInfo"
-                >个人信息</el-dropdown-item
-              >
-              <el-dropdown-item command="logout" divided
-                >退出登录</el-dropdown-item
-              >
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
+            </template>
+            <Profile></Profile>
+          </el-popover>
+          <el-popover :width="200" trigger="click">
+            <template #reference>
+              <el-icon style="cursor: pointer" size="30"><User /></el-icon>
+            </template>
+            <FriendList></FriendList>
+          </el-popover>
+        </el-space>
       </div>
     </div>
   </div>
@@ -53,49 +49,22 @@
 import { useStore } from "vuex";
 import img from "@/assets/img/portrait.jpg";
 import { computed, defineComponent } from "@vue/runtime-core";
+import { User } from "@element-plus/icons";
+import Profile from "@/views/profile/profile.vue";
+import FriendList from "@/views/friendlist/friendList.vue";
 
 export default defineComponent({
   name: "Header",
+  components: {
+    Profile,
+    FriendList,
+    User,
+  },
   setup() {
     const store = useStore();
-    const nickname = computed(() => store.getters.getNickname);
-
-    const handleCommand = (command: any) => {
-      switch (command) {
-        case "personalInfo":
-          personalInfo();
-          break;
-        case "logout":
-          logout();
-          break;
-      }
-    };
-
-    const personalInfo = () => {
-      console.log("personalInfo");
-      store.commit("changeView", {
-        routerParams: {
-          name: "PersonalInfo",
-        },
-      });
-    };
-
-    const logout = () => {
-      console.log("logout");
-      store.commit("changeView", {
-        routerParams: {
-          name: "Login",
-        },
-      });
-      store.commit("setToken", {
-        token: "",
-      });
-    };
 
     return {
-      nickname,
       img,
-      handleCommand,
     };
   },
 });
@@ -105,7 +74,7 @@ export default defineComponent({
 .container {
   margin: auto;
   width: 100%;
-  height: 100%;
+  height: 60px;
   background-color: #545c64;
 }
 .header {
@@ -129,18 +98,23 @@ export default defineComponent({
   flex: 1;
   text-align: right;
 }
-.el-dropdown-link {
+.avatar {
+  margin-top: 10px;
+  height: 50px;
+  border-radius: 5px;
   cursor: pointer;
-  color: #409eff;
 }
 .name {
+  cursor: pointer;
+  color: #409eff;
   font-size: 20px;
   height: 50px;
   line-height: 50px;
 }
-.avatar {
-  height: 50px;
-  line-height: 50px;
-  border-radius: 5px;
+</style>
+
+<style lang="scss">
+.el-popover.pop {
+  text-align: center;
 }
 </style>

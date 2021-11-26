@@ -38,6 +38,7 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   width: 100%;
+  height: 100%;
   background: url("@/assets/img/snowy.jpg");
   background-size: 100% 100%;
 }
@@ -46,5 +47,15 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
+}
+.el-card {
+  border: 1px solid #1954cb;
+  background-color: #545c64;
+  overflow: hidden;
+  color: #f3f3f5;
+}
+.el-tag {
+  white-space: normal;
+  height: auto;
 }
 </style>

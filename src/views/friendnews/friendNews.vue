@@ -2,9 +2,6 @@
   <div class="friendnews">
     <PublishNews></PublishNews>
     <NewsCard></NewsCard>
-    <NewsCard></NewsCard>
-    <NewsCard></NewsCard>
-    <NewsCard></NewsCard>
   </div>
 </template>
 

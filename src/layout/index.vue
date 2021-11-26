@@ -4,7 +4,10 @@
       <el-affix><Header></Header></el-affix>
     </el-header>
     <el-main class="body">
-      <router-view></router-view>
+      <el-backtop target=".body"></el-backtop>
+      <el-scrollbar>
+        <router-view></router-view>
+      </el-scrollbar>
     </el-main>
   </el-container>
 </template>
